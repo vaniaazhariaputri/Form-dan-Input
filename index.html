@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digitalisasi UMKM Desa Paseban Kawis</title>
+
+    <style>
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #fce7f3, #dbeafe);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 17px;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #7c3aed;
+            font-weight: bold;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #f3e8ff;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        main {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        section {
+            background-color: white;
+            margin-bottom: 25px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            color: #7c3aed;
+            margin-bottom: 15px;
+        }
+
+        section p {
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           INFO JURNAL
+        ========================= */
+
+        .info-jurnal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: #faf5ff;
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 5px solid #8b5cf6;
+        }
+
+        .info-box strong {
+            color: #6d28d9;
+        }
+
+        /* =========================
+           FORM INPUT
+        ========================= */
+
+        .form-description {
+            margin-bottom: 25px;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #4c1d95;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 2px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+
+        /* =========================
+           FOCUS STATE
+        ========================= */
+
+        .form-group input:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.18);
+            background-color: #faf5ff;
+        }
+
+        .form-group input:focus + .focus-info {
+            display: block;
+        }
+
+        .focus-info {
+            display: none;
+            font-size: 13px;
+            color: #7c3aed;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .btn-submit {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* =========================
+           HASIL FORM
+        ========================= */
+
+        #hasil-form {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 10px;
+        }
+
+        #hasil-form h3 {
+            color: #15803d;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           LIST
+        ========================= */
+
+        .content-list {
+            padding-left: 20px;
+        }
+
+        .content-list li {
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           ANGGOTA
+        ========================= */
+
+        .anggota-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .anggota {
+            background-color: #faf5ff;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #4c1d95;
+            color: white;
+            margin-top: 30px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            nav {
+                gap: 5px;
+            }
+
+            nav a {
+                font-size: 14px;
+                padding: 7px 9px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .info-jurnal,
+            .anggota-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+        <h1>Pemanfaatan Aplikasi AI dan Website E-Katalog</h1>
+        <p>Digitalisasi UMKM Desa Paseban Kawis</p>
+    </header>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#form-input">Form UMKM</a>
+        <a href="#kekuatan">Kekuatan</a>
+        <a href="#kekurangan">Kekurangan</a>
+        <a href="#anggota">Anggota</a>
+    </nav>
+
+
+    <main>
+
+        <!-- =========================
+             ABOUT
+        ========================= -->
+
+        <section id="about">
+
+            <h2>About / Ringkasan Jurnal</h2>
+
+            <p>
+                Jurnal ini membahas pemanfaatan teknologi digital
+                untuk membantu digitalisasi UMKM di Desa Paseban Kawis.
+            </p>
+
+            <p>
+                Teknologi yang digunakan yaitu
+                <strong>Artificial Intelligence (AI)</strong>
+                dan website <strong>E-Katalog</strong>.
+            </p>
+
+            <p>
+                AI dapat membantu mendukung kegiatan UMKM dalam
+                pemanfaatan teknologi.
+            </p>
+
+            <p>
+                Website E-Katalog digunakan untuk memperkenalkan
+                produk dan memberikan informasi produk secara digital.
+            </p>
+
+            <p>
+                Tujuannya adalah membantu pemasaran dan memperluas
+                jangkauan informasi produk UMKM.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             INFORMASI JURNAL
+        ========================= -->
+
+        <section>
+
+            <h2>Informasi Jurnal</h2>
+
+            <div class="info-jurnal">
+
+                <div class="info-box">
+                    <strong>Judul</strong>
+                    <p>
+                        Pemanfaatan Aplikasi AI dan Website E-Katalog
+                        untuk Digitalisasi UMKM Desa Paseban Kawis.
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <strong>Penulis</strong>
+                    <p>
+                        Nurul Hadist, Abdurrohman Qoim Haqqi Muhammad,
+                        Muhammad Rafi Kurniawan, Keysha Kinanti A.,
+                        Yudha Alif Auliya.
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <strong>Tahun Terbit</strong>
+                    <p>2025</p>
+                </div>
+
+                <div class="info-box">
+                    <strong>Topik Utama</strong>
+                    <p>
+                        Digitalisasi UMKM melalui AI dan website E-Katalog.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FORM INPUT
+        ========================= -->
+
+        <section id="form-input">
+
+            <h2>Form Pencarian UMKM</h2>
+
+            <p class="form-description">
+                Silakan isi form berikut untuk mencari informasi
+                mengenai UMKM dan produk yang ingin diketahui.
+            </p>
+
+            <form id="formUMKM">
+
+                <!-- NAMA UMKM -->
+
+                <div class="form-group">
+
+                    <label for="nama-umkm">
+                        Nama UMKM
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nama-umkm"
+                        name="nama-umkm"
+                        placeholder="Masukkan nama UMKM"
+                        required
+                    >
+
+                    <div class="focus-info">
+                        Field Nama UMKM sedang aktif.
+                    </div>
+
+                </div>
+
+
+                <!-- NAMA PRODUK -->
+
+                <div class="form-group">
+
+                    <label for="nama-produk">
+                        Nama Produk
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nama-produk"
+                        name="nama-produk"
+                        placeholder="Masukkan nama produk"
+                        required
+                    >
+
+                    <div class="focus-info">
+                        Field Nama Produk sedang aktif.
+                    </div>
+
+                </div>
+
+
+                <!-- JENIS USAHA -->
+
+                <div class="form-group">
+
+                    <label for="jenis-usaha">
+                        Jenis Usaha
+                    </label>
+
+                    <input
+                        type="text"
+                        id="jenis-usaha"
+                        name="jenis-usaha"
+                        placeholder="Contoh: Makanan, Kerajinan, Fashion"
+                        required
+                    >
+
+                    <div class="focus-info">
+                        Field Jenis Usaha sedang aktif.
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="btn-submit"
+                >
+                    Cari UMKM
+                </button>
+
+            </form>
+
+
+            <!-- HASIL FORM -->
+
+            <div id="hasil-form">
+
+                <h3>Data Berhasil Dimasukkan</h3>
+
+                <p>
+                    <strong>Nama UMKM:</strong>
+                    <span id="hasil-nama"></span>
+                </p>
+
+                <p>
+                    <strong>Nama Produk:</strong>
+                    <span id="hasil-produk"></span>
+                </p>
+
+                <p>
+                    <strong>Jenis Usaha:</strong>
+                    <span id="hasil-jenis"></span>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             KEKUATAN
+        ========================= -->
+
+        <section id="kekuatan">
+
+            <h2>Kekuatan Jurnal</h2>
+
+            <ul class="content-list">
+
+                <li>
+                    Mengangkat permasalahan yang relevan dengan
+                    perkembangan digitalisasi UMKM.
+                </li>
+
+                <li>
+                    Memanfaatkan AI sebagai salah satu solusi
+                    untuk mendukung kegiatan UMKM.
+                </li>
+
+                <li>
+                    Website E-Katalog membantu memperkenalkan
+                    produk UMKM secara lebih luas.
+                </li>
+
+                <li>
+                    Teknologi dapat membantu pemasaran dan
+                    penyampaian informasi produk.
+                </li>
+
+                <li>
+                    Topik penelitian dekat dengan kebutuhan
+                    masyarakat dan pelaku UMKM.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- =========================
+             KEKURANGAN
+        ========================= -->
+
+        <section id="kekurangan">
+
+            <h2>Kekurangan Jurnal</h2>
+
+            <ul class="content-list">
+
+                <li>
+                    Ruang lingkup penelitian masih berfokus
+                    pada UMKM di Desa Paseban Kawis.
+                </li>
+
+                <li>
+                    Implementasi sistem masih dapat dikembangkan
+                    dengan fitur digital lainnya.
+                </li>
+
+                <li>
+                    Penggunaan AI membutuhkan pemahaman dan
+                    kemampuan digital dari pelaku UMKM.
+                </li>
+
+                <li>
+                    Website E-Katalog perlu dikelola dan diperbarui
+                    secara berkala agar informasi produk tetap sesuai.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- =========================
+             ANGGOTA
+        ========================= -->
+
+        <section id="anggota">
+
+            <h2>Anggota Kelompok</h2>
+
+            <div class="anggota-list">
+
+                <div class="anggota">
+                    <strong>Syera Silvia Erby</strong>
+                    <p>20240140222</p>
+                </div>
+
+                <div class="anggota">
+                    <strong>Vania Azharia</strong>
+                    <p>20240140257</p>
+                </div>
+
+                <div class="anggota">
+                    <strong>Shafa Salsabila Ramadhani</strong>
+                    <p>20240140208</p>
+                </div>
+
+                <div class="anggota">
+                    <strong>Sekar Kinasih</strong>
+                    <p>20240140243</p>
+                </div>
+
+                <div class="anggota">
+                    <strong>Vera Indriani</strong>
+                    <p>20240140155</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            Digitalisasi UMKM Desa Paseban Kawis
+        </p>
+
+        <p>
+            Pemanfaatan AI dan Website E-Katalog
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        const form = document.getElementById("formUMKM");
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const namaUMKM =
+                document.getElementById("nama-umkm").value;
+
+            const namaProduk =
+                document.getElementById("nama-produk").value;
+
+            const jenisUsaha =
+                document.getElementById("jenis-usaha").value;
+
+
+            document.getElementById("hasil-nama").textContent =
+                namaUMKM;
+
+            document.getElementById("hasil-produk").textContent =
+                namaProduk;
+
+            document.getElementById("hasil-jenis").textContent =
+                jenisUsaha;
+
+
+            document.getElementById("hasil-form").style.display =
+                "block";
+
+        });
+
+    </script>
+
+</body>
+</html>
